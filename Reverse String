@@ -1,0 +1,20 @@
+class Solution(object):
+    def reverseString(self, s):
+        """
+        :type s: List[str]
+        :rtype: None Do not return anything, modify s in-place instead.
+        """
+        end = -1
+        
+        for i in range(len(s) // 2):
+            s[i], s[end] = s[end], s[i]
+            end -= 1
+            
+
+---------------same with while loop------------
+class Solution:
+    def reverseString(self, s):
+        left, right = 0, len(s) - 1
+        while left < right:
+            s[left], s[right] = s[right], s[left]
+            left, right = left + 1, right - 1
