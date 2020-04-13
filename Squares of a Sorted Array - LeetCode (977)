@@ -19,7 +19,7 @@ class Solution(object):
         pos_pointer = neg_pointer + 1
        
         while neg_pointer >= 0 and pos_pointer < N:
-            if A[neg_pointer] * A[neg_pointer] < A[pos_pointer] * A[pos_pointer]:
+            if abs(A[neg_pointer]) < abs(A[pos_pointer]):
                 res.append(A[neg_pointer] * A[neg_pointer])
                 neg_pointer -= 1
             else:
