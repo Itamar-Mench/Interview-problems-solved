@@ -1,0 +1,37 @@
+class Solution(object):
+    def sortedSquares(self, A):
+        """
+        :type A: List[int]
+        :rtype: List[int]
+        """
+        N = len(A)
+        res = []
+        
+        neg_pointer = -1
+        pos_pointer = 0
+        
+        for num in A:
+            if num < 0:
+                neg_pointer += 1
+            else:
+                break
+        
+        pos_pointer = neg_pointer + 1
+       
+        while neg_pointer >= 0 and pos_pointer < N:
+            if A[neg_pointer] * A[neg_pointer] < A[pos_pointer] * A[pos_pointer]:
+                res.append(A[neg_pointer] * A[neg_pointer])
+                neg_pointer -= 1
+            else:
+                res.append(A[pos_pointer] * A[pos_pointer])
+                pos_pointer += 1
+        
+        while neg_pointer >= 0:
+                res.append(A[neg_pointer] * A[neg_pointer])
+                neg_pointer -= 1
+                
+        while pos_pointer < N:
+            res.append(A[pos_pointer] * A[pos_pointer])
+            pos_pointer += 1
+            
+        return res
