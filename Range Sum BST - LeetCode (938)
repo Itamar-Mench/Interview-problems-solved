@@ -1,0 +1,62 @@
+Given the root node of a binary search tree, return the sum of values of all nodes with value between L and R (inclusive).
+
+The binary search tree is guaranteed to have unique values.
+
+
+---------------------------------------------------------------------------
+
+
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def get_range_sum(root, L, R):
+        if root.val >= L and root.val <= R:
+            range_sum += root.val
+            
+        if root.left and root.left.val > L:
+            get_range_sum(root.left, L, R)
+        
+        if root.right and root.right.val < R:
+            get_range_sum(root.right, L, R)
+    
+    def rangeSumBST(self, root, L, R):
+        """
+        :type root: TreeNode
+        :type L: int
+        :type R: int
+        :rtype: int
+        """
+        range_sum = 0
+        get_range_sum(root, L, R)
+        return range_sum
+    
+    
+    
+        
+        
+        
+        
+#         **--Iterative Solution - using stack--**
+
+#         my_stack = []
+#         my_stack.append(root)
+#         range_sum = 0
+        
+#         while len(my_stack) > 0: 
+#             node = my_stack.pop()
+           
+#             if node.val >= L and node.val <= R:
+#                 range_sum += node.val
+            
+#             if node.left and node.val > L:
+#                 my_stack.append(node.left)
+            
+#             if node.right and node.val < R:
+#                 my_stack.append(node.right)
+        
+#         return range_sum
