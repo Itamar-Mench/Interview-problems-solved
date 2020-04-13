@@ -1,0 +1,22 @@
+class Solution(object):
+    def sumOfLeftLeaves(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        left_sum = 0
+        my_stack = []
+        my_stack.append(root)
+        
+        while len(my_stack) > 0:
+            node = my_stack.pop()
+            if node != None and node.left:
+                if node.left.left == None and node.left.right == None:
+                    left_sum += node.left.val
+                else:
+                    my_stack.append(node.left)
+
+            if node != None and node.right:
+                if node.right.left != None or node.right.right != None:
+                    my_stack.append(node.right)
+        return left_sum
