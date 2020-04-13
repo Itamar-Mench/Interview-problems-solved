@@ -1,0 +1,24 @@
+# Definition for a binary tree node.
+# class TreeNode(object):
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution(object):
+    def findBottomLeftValue(self, root):
+        """
+        :type root: TreeNode
+        :rtype: int
+        """
+        my_q = []
+        my_q.insert(0, root)
+        
+        while len(my_q) > 0:
+            node = my_q.pop()
+            if node.right != None:
+                my_q.insert(0, node.right)
+            if node.left != None:
+                my_q.insert(0, node.left)
+                
+        return node.val
