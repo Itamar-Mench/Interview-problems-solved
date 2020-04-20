@@ -1,0 +1,22 @@
+class Solution(object):
+    def findLucky(self, arr):
+        """
+        :type arr: List[int]
+        :rtype: int
+        """
+        
+        my_dict = {}
+        for num in arr:
+            if num in my_dict:
+                my_dict[num] += 1
+            else:
+                my_dict[num] = 1
+        
+        largest_lucky = -1
+        for num in my_dict:
+            if num == my_dict[num]:
+                if num > largest_lucky:
+                    largest_lucky = num
+        
+        
+        return largest_lucky
