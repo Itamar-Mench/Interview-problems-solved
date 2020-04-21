@@ -1,0 +1,64 @@
+class Solution(object):
+    def shortestToChar(self, S, C):
+        """
+        :type S: str
+        :type C: str
+        :rtype: List[int]
+        """
+        c_idx = -len(S)
+        res = [0]*len(S)
+        
+        for i in range(len(S)):
+            if S[i] == C:
+                c_idx = i
+            res[i] = i - c_idx
+            
+            #after 1st pass: 
+            #[0, 1, 2, 0, 1, 0, 0, 1, 2, 3, 4, 0]
+        
+        for i in range(len(S)-1, -1, -1):
+            if S[i] == C:
+                c_idx = i
+            res[i] = min(res[i], abs(i - c_idx))
+        
+        return res
+        
+        
+                
+#        ****my first Brute force Slow Solution****
+
+#         res = [0]*len(S)
+#         c_index_arr = [0]*len(S)
+#         for i in range(len(S)):
+#             if S[i] == C:
+#                 c_index_arr[i] = 1
+        
+#         for i in range(len(S)):
+#             val = self.return_closest_index_of_c(c_index_arr, i)
+#             print 'val=',val, 'i=',i
+#             res[i] = abs(val - i)
+        
+#         return res
+            
+        
+#     def return_closest_index_of_c(self, c_index_arr, i):
+#         if c_index_arr[i] == 1:
+#             return int(i)
+        
+#         neg = -1
+#         pos = 1
+#         while i + neg >= 0 or i + pos <= len(c_index_arr) -1:
+         
+#             if i + neg >= 0:
+         
+#                 if c_index_arr[i + neg] == 1:
+#                     return int(i + neg)
+#                 else:
+#                     neg -= 1      
+#             if i + pos <= len(c_index_arr)-1:
+#                 print (i + pos)
+#                 if c_index_arr[i + pos] == 1:
+#                     return int(i + pos)
+#                 else:
+#                     pos += 1
+        
