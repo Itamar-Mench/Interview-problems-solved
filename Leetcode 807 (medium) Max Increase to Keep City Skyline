@@ -1,0 +1,42 @@
+class Solution:
+    def maxIncreaseKeepingSkyline(self, grid: List[List[int]]) -> int:
+        og_top_skyline, og_side_skyline = self.skyline(grid)
+        print("og top= ", og_top_skyline, "og side= ", og_side_skyline)
+        ans = 0
+        
+        
+        
+        for row in range(len(grid)):
+            for col in range(len(grid[0])):
+                ans += min(og_top_skyline[col], og_side_skyline[row]) - grid[row][col]
+                
+        return(ans)
+        
+    
+    def skyline(self, grid):
+        rows = len(grid)
+        cols = len(grid[0])
+        
+        #print("looking from either side: ")
+        side_skyline = []
+        
+        for row in grid:
+            max_val = 0
+            for num in row:
+                if num > max_val:
+                    max_val = num
+            side_skyline.append(max_val)
+        
+        
+        
+        #print("looking from top or bottom: ")
+        top_skyline = []
+        
+        for i in range(len(grid)):
+            max_val = 0
+            for row in grid:
+                if row[i] > max_val:
+                    max_val = row[i]
+            top_skyline.append(max_val)
+        
+        return(top_skyline, side_skyline)
